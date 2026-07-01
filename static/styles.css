@@ -8,7 +8,7 @@ body {
 /* This styles the card container holding your books */
 main {
     background-color: #000000; /* Crisp white background for the card */
-    max-width: 450px;       /* Keeps the box from getting too wide */
+    max-width: 1000px;       /* Keeps the box from getting too wide */
     margin: 5 auto;         /* Magic rule: centers the box on the screen */
     padding: 30px;          /* Breathing space inside the box */
     border-radius: 12px;    /* Beautiful rounded corners */
