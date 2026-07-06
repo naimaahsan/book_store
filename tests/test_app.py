@@ -1,5 +1,7 @@
 import sys
 import os
+from playwright.sync_api import Page, expect
+from lib.database_connection import DatabaseConnection
 
 # this line is a bit of a hack which allows us to import app without changing anything else
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
@@ -18,57 +20,41 @@ def test_get_books_returns_a_200():
     assert response.status_code == 200
 
 
+def test_get_list_of_books(page: Page):
+    connection = DatabaseConnection()
+    connection.connect()
+    connection.seed("./seeds/books.sql")
+    page.goto("http://127.0.0.1:5001/books")
 
-# a descriptive test name
-# def test_get_books_returns_all_the_books():
+    # 2. Target the actual container class instead of "li"
+    books = page.locator(".book-thumbnail")
 
-#     client = app.test_client()
-#     response = client.get("/books")
-
-#     # here's where we assert that the response body contains all the books
-#     # note that we need to call .json on the response
-#     assert response.json == [
-#         {
-#             "title": "The Gruffalo",
-#             "author": "Julia Donaldson"
-#         },
-#         {
-#             "title": "Ada Twist, Scientist",
-#             "author": "Andrea Beaty"
-#         },
-#         {
-#             "title": "The Girl Who Drank the Moon",
-#             "author": "Kelly Barnhill"
-#         },
-#         {
-#             "title": "Dragons in a Bag",
-#             "author": "Zetta Elliott"
-#         }
-#         ]
-    
-def test_get_authors_returns_200():
-    client = app.test_client()
-    response = client.get("/authors")
-    assert response.status_code == 200
-
-def test_get_authors_returns_all_authors():
-    client = app.test_client()
-    response = client.get("/authors")
-    assert response.json == [
-    {
-        "name": "Julia Donaldson",
-        "dob": "1948-09-16"
-    },
-    {
-        "name": "Andrea Beaty",
-        "dob": "1961-10-08"
-    },
-    {
-        "name": "Kelly Barnhill",
-        "dob": "1973-01-01"
-    },
-    {
-        "name": "Zetta Elliott",
-        "dob": "1979-11-11"
-    }
+    # 3. Update expectations to match the HTML structure (note the \n and capitalization)
+    expected_books = [
+        "The Gruffalo\n\nBy Julia Donaldson",
+        "Ada Twist, Scientist\n\nBy Andrea Beaty",
+        "The Girl Who Drank the Moon\n\nBy Kelly Barnhill",
+        "Dragons in a Bag\n\nBy Zetta Elliott"
     ]
+
+    # 4. Extract and assert
+    actual_books = books.all_inner_texts()
+    assert actual_books == expected_books
+
+def test_get_list_of_films(page:Page):
+    connection = DatabaseConnection()
+    connection.connect()
+    connection.seed("./seeds/films.sql")
+    page.goto("http://127.0.0.1:5001/films")
+    films = page.locator(".films")
+
+    expected_films = [
+        "Avatar\n\nGenre: Sci-Fi",
+        "Titanic\n\nGenre: Romance",
+        "Jurassic Park\n\nGenre: Adventure",
+        "Frozen\n\nGenre: Animation",
+        "The Dark Knight Rises\n\nGenre: Action"
+    ]
+
+    actual_films = films.all_inner_texts()
+    assert actual_films == expected_films

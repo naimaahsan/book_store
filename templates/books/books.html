@@ -1,5 +1,10 @@
 <html>
     <head>
+
+        <a href="/" >Home</a>
+        <a href="/films" >Films</a>
+        <a href="/users/new" >Create Account</a>
+
         <title>Book Store</title>
         <link rel="stylesheet" href="/static/styles.css">
     </head>
@@ -14,12 +19,21 @@
                         <img src = "{{ book.image_url if book.image_url else 'https://via.placeholder.com/300x200' }}" alt = "{{ book.title }}">
                         
                         <div class="caption">
-                            <h3> {{book.title }} </h3>
+                            <h3> {{ book.title }} </h3>
                             <p> By {{ book.author }}</p>
                         </div>
                     </div>
                     {% endfor %}
-            </div>
+                </div>
+
+                <form class="book-form" method="POST" action="/books">
+                    <h3>Add a new book</h3>
+                    <input type="text" name="title" placeholder="Title *" required>
+                    <input type="text" name="author" placeholder="Author *" required>
+                    <input type="text" name="image_url" placeholder="Image URL (optional)">
+                    <input type="submit" value="Submit">
+                    <p>*Required</p>
+                </form>
         </main>
     </body>
 </html>

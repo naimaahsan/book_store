@@ -1,9 +1,9 @@
 class Book:
-    def __init__(self, id, title, author, image_url = None):
+    def __init__(self, title, author, id = None, image_url = None):
         self.id = id
         self.title = title
         self.author = author
-        self.image_url = image_url if image_url else "https://via.placeholder.com/300x450?text=No+Cover"
+        self.image_url = image_url if image_url else "https://placehold.co/150x150/EEE/31343C"
 
     def __eq__(self, other):
         return self.__dict__ == other.__dict__

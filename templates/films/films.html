@@ -1,0 +1,23 @@
+<html>
+    <head>
+
+        <a href="/" >Home</a>
+        <a href="/books" >Books</a>
+        <a href="/users/new" >Create Account</a>
+
+        <title>Film Store</title>
+        <link rel="stylesheet" href="/static/styles.css">
+    </head>
+    <body>
+        <main>
+            <h1>My Films</h1>
+            <div class="films-container" >
+                {% for film in films %}
+                <div class= "films">
+                    <h3> {{ film.title }}</h3> <p> Genre: {{ film.genre }}</p>
+                </div> 
+                {% endfor %}
+            </div>
+        </main>
+    </body>
+</html>

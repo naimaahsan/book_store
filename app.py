@@ -1,30 +1,58 @@
-from flask import Flask, render_template
-from flask_sqlalchemy import SQLAlchemy
+from flask import Flask, render_template, request, redirect
 from lib.database_connection import DatabaseConnection
 from lib.book_repository import BookRepository
+from lib.book import Book
+from lib.film_repository import FilmRepository
+from lib.film import Film
+from lib.user_repository import UserRepository
+from lib.user import User
 
 # instantiate a Flask app object
 app = Flask(__name__)
-db = SQLAlchemy() # Initialize the SQLAlchemy ORM utility
-
-# Database model that automatically maps this Python class to a SQL table
-class ThumbnailItem(db.Model):
-    id = db.Column(db.Integer, primary_key=True) # Unique ID for each record; automatically increments
-    title = db.Column(db.String(100), nullable=False) # Required string column for the book title (max 100 characters)
-    author = db.Column(db.Text, nullable=True) # Optional text column for the author's name
-    image_url = db.Column(db.String(255), nullable=False, default='default.jpg') # Required image link column; defaults to 'default.jpg' if left blank
 
 @app.route("/", methods=["GET"])
 def index():
-    return render_template("index.html")
+    return render_template("books/index.html")
 
 @app.route("/books", methods=["GET"])
 def books():
     connection = DatabaseConnection()    # Initialize database connection tool
-    connection.connect()                 # Open active connection to the database
+    connection.connect()   
     book_repository = BookRepository(connection)         # Pass the connection to the repository to allow SQL queries
-    db_books = book_repository.all()                     # Run SELECT query and get list of Book objects
-    return render_template("books.html", books=db_books) # Render books.html and inject the db_books data into the template
+    books = book_repository.all()                     # Run SELECT query and get list of Book objects
+    return render_template("books/books.html", books=books) # Render books.html and inject the books data into the template
+
+@app.route('/books', methods=["POST"])
+def create_book():
+    connection = DatabaseConnection()
+    connection.connect()
+    book_repository = BookRepository(connection)
+    book_details = request.form
+    book = Book(title=book_details["title"], author=book_details["author"], image_url=book_details["image_url"])
+    book_repository.create(book)
+    return redirect("/books")
+
+@app.route('/films', methods=["GET"])
+def films():
+    connection = DatabaseConnection()
+    connection.connect()
+    film_repostitory = FilmRepository(connection)
+    films = film_repostitory.all()
+    return render_template("films/films.html", films = films)
+
+@app.route('/users/new', methods=["GET"])
+def sign_up_form():
+    return render_template("users/signup_form.html")
+
+@app.route('/users', methods=["POST"])
+def create_user():
+    connection = DatabaseConnection()
+    connection.connect()
+    user_repository = UserRepository(connection)
+    user_details = request.form 
+    user = User(username=user_details["username"], password=user_details["password"])
+    user_repository.create(user)
+    return redirect('/books')
 
 # Declares a route that listens for a GET request to the path /hello
 # and a method to execute when that request comes in

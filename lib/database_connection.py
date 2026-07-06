@@ -7,8 +7,13 @@ import os
 
 # If the below seems too complex right now, that's OK.
 # That's why we have provided it!
+
+# DATABASE_NAME = os.getenv("DATABASE_NAME", "book_store_test")
+
 class DatabaseConnection:
-    DATABASE_NAME = "book_store_app" # <-- CHANGE THIS!
+    # DATABASE_NAME = "book_store" # <-- CHANGE THIS!
+    DATABASE_NAME = os.getenv("DATABASE_NAME", "book_store_test")
+    DATABASE_HOST = os.getenv("DATABASE_HOST", "localhost")
 
     def __init__(self):
         self.connection = None
@@ -17,8 +22,17 @@ class DatabaseConnection:
     # to localhost and select the database name given in argument.
     def connect(self):
         try:
+            # -- local testing --
+            # self.connection = psycopg.connect(
+            #     f"postgresql://localhost/{DATABASE_NAME}",
+            #     row_factory=dict_row)
+            # -- docker setup --
+            # self.connection = psycopg.connect(
+            #     f"postgresql://postgres:password@book_store_db/book_store_app",
+            #     row_factory=dict_row)
+            # -- use the new env var --
             self.connection = psycopg.connect(
-                f"postgresql://localhost/{self.DATABASE_NAME}",
+                f"postgresql://{self.DATABASE_HOST}/{self.DATABASE_NAME}",
                 row_factory=dict_row)
         except psycopg.OperationalError:
             raise Exception(f"Couldn't connect to the database {self.DATABASE_NAME}! " \

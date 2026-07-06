@@ -1,0 +1,25 @@
+<html>
+    <head>
+
+        <a href="/" >Home</a>
+        <a href="/books" >Books</a>
+        <a href="/films" >Films</a>
+
+        <title>Sign Up</title>
+        <link rel="stylesheet" href="/static/styles.css">
+    </head>
+    <body>
+        <main>
+            <h1>Sign Up</h1>
+
+                <form class="signup-form" method="POST" action="/users">
+                    <h3>Create Account</h3>
+                    <input type="text" name="username" placeholder="Username *" required>
+                    <input type="text" name="password" placeholder="Password *" required>
+                    <button type="submit">Sign Up</button>
+                    <p>*Required</p>
+                </form>
+        </main>
+    </body>
+</html>
+
