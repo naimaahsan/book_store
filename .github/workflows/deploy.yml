@@ -1,17 +1,24 @@
 name: Deploy to EC2
 
+# on:
+#   push:
+#     branches: [ main ]
+
 on:
-  push:
-    branches: [ main ]
+  workflow_run:
+    workflows: ["Continuous Integration"] # This must match the 'name:' at the top of your ci.yml
+    types:
+      - completed
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     environment: prod
 
     steps:
       - name: Check out
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4.2.2
 
       - name: Copy app to EC2
         uses: appleboy/scp-action@v0.1.4
@@ -54,7 +61,7 @@ jobs:
 
                 # Give Postgres 5 seconds to boot up completely
               sleep 5
-              
+
               docker exec -i book_store_db psql -U postgres -d book_store < ~/book_store/seeds/books.sql
               docker exec -i book_store_db psql -U postgres -d book_store < ~/book_store/seeds/films.sql
               docker exec -i book_store_db psql -U postgres -d book_store < ~/book_store/seeds/users.sql
