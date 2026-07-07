@@ -8,10 +8,10 @@
 -- -------------------------------------------------------------
 
 
-DROP TABLE IF EXISTS "public"."books";
--- Sequence and defined type
-CREATE SEQUENCE IF NOT EXISTS books_id_seq;
+DROP TABLE IF EXISTS "public"."books" CASCADE;
+DROP SEQUENCE IF EXISTS books_id_seq CASCADE;
 
+CREATE SEQUENCE books_id_seq;
 -- Table Definition
 CREATE TABLE "public"."books" (
     "id" int4 NOT NULL DEFAULT nextval('books_id_seq'::regclass),
@@ -21,7 +21,7 @@ CREATE TABLE "public"."books" (
     PRIMARY KEY ("id")
 );
 
-TRUNCATE TABLE books RESTART IDENTITY CASCADE;
+TRUNCATE TABLE books;
 
 INSERT INTO "public"."books" ("title", "author", "image_url") VALUES
 ('The Gruffalo', 'Julia Donaldson', 'https://voxblock.co.uk/cdn/shop/files/the-gruffalo-audiobook-character.webp?v=1714987686'),
