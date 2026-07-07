@@ -51,6 +51,10 @@ jobs:
                 -e POSTGRES_PASSWORD='${{ secrets.POSTGRES_PASSWORD }}' \
                 -e POSTGRES_DB='book_store' \
                 -d postgres:17
+
+                # Give Postgres 5 seconds to boot up completely
+              sleep 5
+              
               docker exec -i book_store_db psql -U postgres -d book_store < ~/book_store/seeds/books.sql
               docker exec -i book_store_db psql -U postgres -d book_store < ~/book_store/seeds/films.sql
               docker exec -i book_store_db psql -U postgres -d book_store < ~/book_store/seeds/users.sql
