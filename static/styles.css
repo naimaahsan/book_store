@@ -44,8 +44,29 @@ p {
     font-size: 20px;
 }
 
-a {
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 1rem 0;
+    margin-top: 0;
+}
+
+nav a {
     color: white;
+    display: inline-block;
+    border: 1px solid #f7f2f7;
+    padding: 10px;
+    background-color: #1d131d;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgb(63, 60, 60);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+    text-decoration: none/* Removes the default blue underline */
+}
+
+nav a:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(244, 243, 244, 0.3);
 }
 
 
