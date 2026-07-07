@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, session
 from lib.database_connection import DatabaseConnection
 from lib.book_repository import BookRepository
 from lib.book import Book
@@ -6,23 +6,28 @@ from lib.film_repository import FilmRepository
 from lib.film import Film
 from lib.user_repository import UserRepository
 from lib.user import User
+from lib.login_required import login_required
 
 # instantiate a Flask app object
 app = Flask(__name__)
+app.secret_key = "some_really_secret_key"
+
 
 @app.route("/", methods=["GET"])
 def index():
     return render_template("books/index.html")
 
 @app.route("/books", methods=["GET"])
-def books():
+def get_books():
     connection = DatabaseConnection()    # Initialize database connection tool
     connection.connect()   
     book_repository = BookRepository(connection)         # Pass the connection to the repository to allow SQL queries
     books = book_repository.all()                     # Run SELECT query and get list of Book objects
     return render_template("books/books.html", books=books) # Render books.html and inject the books data into the template
 
+
 @app.route('/books', methods=["POST"])
+@login_required
 def create_book():
     connection = DatabaseConnection()
     connection.connect()
@@ -33,7 +38,7 @@ def create_book():
     return redirect("/books")
 
 @app.route('/films', methods=["GET"])
-def films():
+def get_films():
     connection = DatabaseConnection()
     connection.connect()
     film_repostitory = FilmRepository(connection)
@@ -53,6 +58,27 @@ def create_user():
     user = User(username=user_details["username"], password=user_details["password"])
     user_repository.create(user)
     return redirect('/books')
+
+@app.route('/sessions/new', methods=["GET"])
+def login_form():
+    return render_template("users/login_form.html")
+
+@app.route('/sessions', methods=["POST"])
+def create_session():
+    connection = DatabaseConnection()
+    connection.connect()
+    user_repository = UserRepository(connection)
+    username = request.form["username"]
+    password = request.form["password"]
+    user = user_repository.find_by_username(username)
+
+    if user and user.password == password:
+        session["user_id"] = user.id
+        session["username"] = user.username
+        return redirect("/books")
+    else:
+        return redirect("/sessions/new")
+
 
 # Declares a route that listens for a GET request to the path /hello
 # and a method to execute when that request comes in

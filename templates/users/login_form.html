@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <nav>
+            <a href="/" >Home</a>
+            <a href="/books" >Books</a>
+            <a href="/films" >Films</a>
+            <a href="/users/new" >Create Account</a>
+            <a href="/sessions/new">Login</a>
+        </nav>
+
+        <title>Login</title>
+        <link rel="stylesheet" href="/static/styles.css">
+    </head>
+    <body>
+        <main>
+            <h1>Login</h1>
+
+                <form class="login-form"  action="/sessions" method="POST">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+
+                    <button type="submit">Login</button>
+                </form>
+        </main>
+    </body>
+</html>

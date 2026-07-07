@@ -304,3 +304,91 @@ nav a:hover {
     color: #2c0628;
     font-size: small;
 }
+
+
+/* ==========================================================================
+   LOGIN FORM 
+   ========================================================================== */
+
+/* Container styling for the form */
+.login-form {
+    max-width: 500px;
+    margin: 2rem 250;
+    padding: 1.4rem;
+    background-color: #f1e0f1;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+}
+
+.login-form h3 {
+    color: #2b0a2b;
+    text-align: center;
+    font-size: 24px;
+    margin-top: 0;                                     /* Ensures clean spacing at the top */
+}
+
+/* Beautiful modern input styling */
+.login-form input[type="text"] {
+    display: block;                                    /* Pushes the next input onto a new line */
+    width: 100%;
+    padding: .5rem;
+    margin-bottom: 1.25rem;                            /* Replaces the old .input-group spacing */
+    border: 1px solid #060505;
+    border-radius: 4px;
+    font-size: 1rem;
+    text-align: center;
+    box-sizing: border-box;                            /* Prevents input from stretching outside the form */
+    transition: border-color 0.5s, box-shadow 0.2s;
+}
+
+.login-form input[type="password"] {
+    display: block;                                    /* Pushes the next input onto a new line */
+    width: 100%;
+    padding: .5rem;
+    margin-bottom: 1.25rem;                            /* Replaces the old .input-group spacing */
+    border: 1px solid #060505;
+    border-radius: 4px;
+    font-size: 1rem;
+    text-align: center;
+    box-sizing: border-box;                            /* Prevents input from stretching outside the form */
+    transition: border-color 0.5s, box-shadow 0.2s;
+}
+
+/* Highlight input when clicked/focused */
+.login-form input[type="text"]:focus {
+    outline: none;
+    border-color: #0037ff;
+    box-shadow: 0 0 0 3px rgba(15, 69, 215, 0.2);
+}
+
+/* Styling the Submit Button (Updated to target button[type="submit"]) */
+
+.login-form button[type="submit"] {
+    width: 100%;
+    padding: .75rem;
+    background-color: #4a3b4a;
+    color: rgb(241, 235, 235);
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+/* Make button darker when hovered over */
+.login-form button[type="submit"]:hover {
+    background-color: #530d4c;
+    color: rgb(247, 245, 245);
+}
+
+.login-form p {
+    margin-bottom: 0;
+    font-style: italic;
+}
+
+.login-form p {
+    color: #2c0628;
+    font-size: small;
+}
