@@ -21,7 +21,7 @@ CREATE TABLE "public"."books" (
     PRIMARY KEY ("id")
 );
 
-TRUNCATE table books;
+TRUNCATE TABLE books RESTART IDENTITY CASCADE;
 
 INSERT INTO "public"."books" ("title", "author", "image_url") VALUES
 ('The Gruffalo', 'Julia Donaldson', 'https://voxblock.co.uk/cdn/shop/files/the-gruffalo-audiobook-character.webp?v=1714987686'),
