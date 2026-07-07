@@ -21,8 +21,6 @@ def test_create_new_book(page: Page):
     page.get_by_role("button", name="Submit").click()
     books = page.locator(".book-thumbnail")
 
-    books.first.wait_for(state="visible")
-    
     new_book = books.all_inner_texts()[-1]
     assert new_book == "The BFG\n\nBy Roahl Dahl"
 
