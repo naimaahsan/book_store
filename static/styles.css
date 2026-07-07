@@ -11,7 +11,9 @@ body {
 
 /* This styles the card container holding your books */
 main {
-    background-color: #000000;                         /* Crisp white background for the card */
+    background-color: #000000;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M30 14c-2.5-4-7-6-11-4-4 2-5 6.5-3 10.5 2.5 4 7 6 11 4 4-2 5-6.5 3-10.5zm0 32c2.5 4 7 6 11 4 4-2 5-6.5 3-10.5-2.5-4-7-6-11-4-4 2-5 6.5-3 10.5zM14 30c-4 2.5-6 7-4 11 2 4 6.5 5 10.5 3 4-2.5 6-7 4-11-2-4-6.5-5-10.5-3zm32 0c4-2.5 6-7 4-11-2-4-6.5-5-10.5-3-4 2.5-6 7-4 11 2 4 6.5 5 10.5 3z' fill='%23222222' fill-opacity='0.4'/%3E%3C/svg%3E");
+    background-repeat: repeat;
     max-width: 1000px;                                 /* Keeps the box from getting too wide */
     margin: 5 auto;                                    /* Magic rule: centers the box on the screen */
     padding: 30px;                                     /* Breathing space inside the box */
@@ -238,7 +240,7 @@ nav a:hover {
 /* Container styling for the form */
 .signup-form {
     max-width: 500px;
-    margin: 2rem 250;
+    margin: 2rem auto;
     padding: 1.4rem;
     background-color: #f1e0f1;
     border-radius: 8px;
@@ -313,7 +315,7 @@ nav a:hover {
 /* Container styling for the form */
 .login-form {
     max-width: 500px;
-    margin: 2rem 250;
+    margin: 2rem auto;
     padding: 1.4rem;
     background-color: #f1e0f1;
     border-radius: 8px;
