@@ -23,10 +23,9 @@ CREATE TABLE "public"."books" (
 
 TRUNCATE table books;
 
-INSERT INTO "public"."books" ("id", "title", "author", "image_url") VALUES
-(1, 'The Gruffalo', 'Julia Donaldson', 'https://voxblock.co.uk/cdn/shop/files/the-gruffalo-audiobook-character.webp?v=1714987686'),
-(2, 'Ada Twist, Scientist', 'Andrea Beaty', 'https://m.media-amazon.com/images/I/81m0eJVO9vL._AC_UF894,1000_QL80_.jpg'),
-(3, 'The Girl Who Drank the Moon', 'Kelly Barnhill', 'https://m.media-amazon.com/images/I/91bDYQ4S5WL._AC_UF894,1000_QL80_.jpg'),
-(4, 'Dragons in a Bag', 'Zetta Elliott', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvN310x7_U1b9twPx5SrU95sxENWyIQ4nlEY2HUlwQ1g&s=10');
+INSERT INTO "public"."books" ("title", "author", "image_url") VALUES
+('The Gruffalo', 'Julia Donaldson', 'https://voxblock.co.uk/cdn/shop/files/the-gruffalo-audiobook-character.webp?v=1714987686'),
+('Ada Twist, Scientist', 'Andrea Beaty', 'https://m.media-amazon.com/images/I/81m0eJVO9vL._AC_UF894,1000_QL80_.jpg'),
+('The Girl Who Drank the Moon', 'Kelly Barnhill', 'https://m.media-amazon.com/images/I/91bDYQ4S5WL._AC_UF894,1000_QL80_.jpg'),
+('Dragons in a Bag', 'Zetta Elliott', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvN310x7_U1b9twPx5SrU95sxENWyIQ4nlEY2HUlwQ1g&s=10');
 
-SELECT setval(pg_get_serial_sequence('books', 'id'), COALESCE(max(id), 1));
