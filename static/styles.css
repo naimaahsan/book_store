@@ -207,14 +207,21 @@ nav a:hover {
 .update_book-form {
     display: flex;
     flex-direction: column;
+    max-width: 500px;
+    margin: 2rem auto;
+    padding: 1.4rem;
+    background-color: #f1e0f1;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
 }
 
 .update_book-form h1 {
     margin-top: 0;
     margin-bottom: 1.5rem;
-    color: #ecd5f1;
+    color: #26072d;
     font-size: 35px;
-    border-bottom: 2px solid #dee2e6;
+    border-bottom: 2px solid  #26072d;
     padding-bottom: 0.75rem;
 }
 
@@ -223,7 +230,7 @@ nav a:hover {
     margin-bottom: 0.4rem;
     margin-top: 0.8rem;
     font-size: 17px;
-    color: #dbe0e6;
+    color:  #26072d;
 }
 
 .update_book-form input[type="text"] {
