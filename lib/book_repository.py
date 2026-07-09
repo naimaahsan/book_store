@@ -28,3 +28,19 @@ class BookRepository:
         )
 
         return None
+
+    def update(self, book):
+        self._connection.execute(
+            'UPDATE books SET title = %s, author = %s, image_url = %s WHERE id = %s', [book.title, book.author, book.image_url, book.id]
+        )
+
+        return None
+
+    def find(self, book_id):
+        rows = self._connection.execute(
+            ' SELECT id, title, author, image_url FROM books WHERE id = %s', [book_id]
+        )
+
+        row = rows[0]
+
+        return Book(row["title"], row["author"], row["id"], row["image_url"])
