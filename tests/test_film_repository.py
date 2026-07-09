@@ -2,7 +2,7 @@ from lib.film_repository import FilmRepository
 from lib.film import Film
 
 def test_all_films(db_connection):
-    db_connection.seed("seeds/books.sql")
+    db_connection.seed("seeds/films.sql")
     repository = FilmRepository(db_connection)
     films = repository.all()
 

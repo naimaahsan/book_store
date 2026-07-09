@@ -27,7 +27,7 @@ def test_get_list_of_books(page: Page):
     page.goto("http://127.0.0.1:5001/books")
 
     # 2. Target the actual container class instead of "li"
-    books = page.locator(".book-thumbnail")
+    books = page.locator(".caption")
 
     # 3. Update expectations to match the HTML structure (note the \n and capitalization)
     expected_books = [

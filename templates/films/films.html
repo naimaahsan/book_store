@@ -21,6 +21,13 @@
                 </div> 
                 {% endfor %}
             </div>
+            <form class="film-form" method="POST" action="/films">
+                    <h3>Add a new film</h3>
+                    <input type="text" name="title" placeholder="Title *" required>
+                    <input type="text" name="genre" placeholder="Genre *" required>
+                    <input type="submit" value="Submit">
+                    <p>*Required</p>
+                </form>
         </main>
     </body>
 </html>

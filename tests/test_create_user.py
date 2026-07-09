@@ -11,7 +11,7 @@ def test_create_user_is_saved_to_database():
     # set up a DB connection
     connection = DatabaseConnection()
     connection.connect()
-    connection.execute("TRUNCATE TABLE users;")
+    connection.execute("TRUNCATE TABLE users RESTART IDENTITY;")
 
    # send the request
     response = client.post('/users', data={
