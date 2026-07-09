@@ -213,7 +213,7 @@ nav a:hover {
     margin-top: 0;
     margin-bottom: 1.5rem;
     color: #ecd5f1;
-    font-size: 2.5rem;
+    font-size: 35px;
     border-bottom: 2px solid #dee2e6;
     padding-bottom: 0.75rem;
 }
@@ -222,13 +222,13 @@ nav a:hover {
     font-weight: 600;
     margin-bottom: 0.4rem;
     margin-top: 0.8rem;
-    font-size: 0.9rem;
+    font-size: 17px;
     color: #dbe0e6;
 }
 
 .update_book-form input[type="text"] {
     padding: 0.6rem 0.75rem;
-    font-size: 1rem;
+    font-size: 17px;
     border: 1px solid #ced4da;
     border-radius: 4px;
     background-color: #fff;
@@ -259,7 +259,7 @@ nav a:hover {
     border: none;
     padding: 0.75rem;
     border-radius: 4px;
-    font-size: 1rem;
+    font-size: 17px;
     cursor: pointer;
     margin-top: 1.5rem;
     transition: background-color 0.15s ease-in-out;
@@ -272,7 +272,7 @@ nav a:hover {
 a {
     color: #f4f6f8; /* Change this to your preferred hex code (e.g., #0d6efd for blue) */
     text-decoration: none;
-    font-size: 15px;
+    font-size: 17px;
     margin-top: 1.2rem;
     text-align: center;
     display: inline-block;
