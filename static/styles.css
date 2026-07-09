@@ -201,6 +201,99 @@ nav a:hover {
 
 
 /* ==========================================================================
+   UPDATE BOOK FORM 
+   ========================================================================== */
+
+.update_book-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin: 2rem auto;
+    padding: 1.4rem;
+    background-color: #f1e0f1;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+}
+
+.update_book-form h1 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    color: #26072d;
+    font-size: 35px;
+    border-bottom: 2px solid  #26072d;
+    padding-bottom: 0.75rem;
+}
+
+.update_book-form label {
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    margin-top: 0.8rem;
+    font-size: 17px;
+    color:  #26072d;
+}
+
+.update_book-form input[type="text"] {
+    padding: 0.6rem 0.75rem;
+    font-size: 17px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    background-color: #fff;
+    transition: border-color 0.15s ease-in-out;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.update_book-form input[type="text"]:focus {
+    outline: none;
+    border-color: #5e128d;
+    box-shadow: 0 0 0 8px rgba(214, 210, 218, 0.15);
+}
+
+/* Readonly settings scoped inside form */
+.update_book-form input[name="ID"] {
+    background-color: #e9ecef !important;
+    color: #6c757d !important;
+    cursor: not-allowed;
+    width: 70px !important;
+}
+
+/* Submit button scoped inside form */
+.update_book-form input[type="submit"] {
+    background-color: #4a3b4a;;
+    color: white;
+    font-weight: 600;
+    border: none;
+    padding: 0.75rem;
+    border-radius: 4px;
+    font-size: 17px;
+    cursor: pointer;
+    margin-top: 1.5rem;
+    transition: background-color 0.15s ease-in-out;
+}
+
+.update_book-form input[type="submit"]:hover {
+    background-color: #776775;
+}
+
+a {
+    color: #f4f6f8; /* Change this to your preferred hex code (e.g., #0d6efd for blue) */
+    text-decoration: none;
+    font-size: 17px;
+    margin-top: 1.2rem;
+    text-align: center;
+    display: inline-block;
+}
+
+/* Give it a neat interactive state when a user hovers over it */
+a:hover {
+    color: #0b5ed7; /* Changes to a nice operational blue on hover */
+    text-decoration: underline;
+}
+
+
+
+/* ==========================================================================
    DELETE BUTTON
    ========================================================================== */
 .delete button {
@@ -220,6 +313,31 @@ nav a:hover {
 }
 
 .delete button:hover {
+    background-color: #776775;
+    color: rgb(247, 245, 245);
+}
+
+
+/* ==========================================================================
+   UPDATE BUTTON
+   ========================================================================== */
+.update button {
+    width: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: .75rem;
+    background-color: #4a3b4a;
+    color: rgb(241, 235, 235);
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.update button:hover {
     background-color: #776775;
     color: rgb(247, 245, 245);
 }

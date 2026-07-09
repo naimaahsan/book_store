@@ -50,6 +50,27 @@ def delete_book(book_id):
     book_repository.delete(book_id)
     return redirect('/books')
 
+@app.route('/books/update/<int:book_id>', methods=["POST"])
+@login_required
+def save_updated_book(book_id):
+    connection = DatabaseConnection()
+    connection.connect()
+    book_repository = BookRepository(connection)
+    title = request.form['updated title']
+    author = request.form['updated author']
+    image_url = request.form['updated image_url'] 
+    updated_book = Book(title=title, author=author, image_url=image_url, id=book_id)
+    book_repository.update(updated_book)
+    return redirect('/books')
+
+@app.route('/books/update/<int:book_id>', methods=["GET"])
+@login_required
+def show_update_page(book_id):
+    connection = DatabaseConnection()
+    connection.connect()
+    book_repository = BookRepository(connection)
+    book = book_repository.find(book_id)
+    return render_template('books/update.html', book=book)
 # --- FILMS ---
 
 @app.route('/films', methods=["GET"])

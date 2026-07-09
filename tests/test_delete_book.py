@@ -15,8 +15,10 @@ def test_delete_exiting_book(page: Page):
     page.get_by_role("button", name="Login").click()
 
     page.goto("http://localhost:5001/books")
-    page.get_by_text("Delete").first.click()
 
+    page.on("dialog", lambda d: d.accept()) # Set up listener: "If a dialog pops up at any point in the future, catch it and click OK."
+    page.get_by_text("Delete").first.click()
+    
     books = page.locator(".caption")
     assert books.count() == 3
     
@@ -27,6 +29,7 @@ def test_delete_book_unauth(page: Page):
     connection.seed("./seeds/books.sql") 
 
     page.goto("http://localhost:5001/books")
+    page.on("dialog", lambda d: d.accept())
     page.get_by_text("Delete").first.click()
     assert page.url == "http://localhost:5001/sessions/new"
 
@@ -51,6 +54,7 @@ def test_add_then_delete_book(page: Page):
 
     new_book = page.locator(".book-thumbnail", has_text="New Book")
     
+    page.on("dialog", lambda d: d.accept())
     new_book.get_by_role("button", name="Delete").click()
 
     books = page.locator(".caption")

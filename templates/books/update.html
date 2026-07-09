@@ -1,0 +1,39 @@
+<html>
+<head>
+    <nav>
+            <a href="/" >Home</a>
+            <a href="/books" >Books</a>
+            <a href="/films" >Films</a>
+            <a href="/users/new" >Create Account</a>
+            <a href="/sessions/new">Login</a>
+        </nav>
+
+    <title>Update {{ book.title }}</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <main>
+        <form class="update_book-form" method="POST" action="/books/update/{{ book.id }}">
+            <h1>Update: <br>{{ book.title }}</br></h1>
+            
+
+            <label>ID:</label>
+            <input type="text" name="ID" value="{{ book.id }}" readonly style="background-color: #e9ecef; color: #6c757d; cursor: not-allowed; width: 50px;">
+
+            <label>Title:</label>
+            <input type="text" name="updated title" value="{{ book.title }}" >
+            
+            <label>Author:</label>
+            <input type="text" name="updated author" value="{{ book.author }}" >
+            
+            <label>Image URL:</label>
+            <input type="text" name="updated image_url" value="{{ book.image_url }}">
+            
+            <br><br>
+            <input type="submit" value="Update">
+        </form>
+        <br>
+        <a href="/books">Cancel and Go Back</a>
+    </main>
+</body>
+</html>
