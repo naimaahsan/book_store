@@ -15,7 +15,7 @@ def test_update_exiting_book(page: Page):
     page.get_by_role("button", name="Login").click()
 
     page.goto("http://localhost:5001/books")
-    page.get_by_text("Update Book").first.click()
+    page.get_by_text("Update").first.click()
     page.locator("input[name='updated title']").fill("The Elephant")
     page.get_by_role("button", name="Update").click()
 
@@ -52,7 +52,7 @@ def test_add_then_update_book(page: Page):
     page.get_by_placeholder("Author").fill("An Author")
     page.get_by_role("button", name="Submit").click()
 
-    page.locator(".book-thumbnail", has_text="A Book").get_by_role("button", name="Update Book").click()
+    page.locator(".book-thumbnail", has_text="A Book").get_by_role("button", name="Update").click()
 
     page.locator("input[name='updated title']").fill("Updated Book")
     page.locator("input[name='updated author']").fill("Updated Author")
