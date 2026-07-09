@@ -1,0 +1,45 @@
+<!-- <html>
+    <body>
+        <main>
+            <form class="update_book-form" method="POST" action="/books/update/{{ book.id }}">
+                <h3>Update book</h3>
+                <input type="text" name="updated title" placeholder="Title" value="{{ book.title }}">
+                <input type="text" name="updated author" placeholder="Author" value="{{ book.author }}">
+                <input type="text" name="updated image_url" placeholder="Image URL (optional)" value="{{ book.image_url }}">
+                <input type="submit" value="Update">
+            </form>
+        </main>
+    </body>
+</html> -->
+
+
+<html>
+<head>
+    <title>Update Book</title>
+</head>
+<body>
+    <main>
+        <form class="update_book-form" method="POST" action="/books/update/{{ book.id }}">
+            <h3>Update details for: {{ book.title }}</h3>
+            
+
+            <label>ID:</label>
+            <input type="text" name="ID" value="{{ book.id }}" readonly style="background-color: #e9ecef; color: #6c757d; cursor: not-allowed; width: 50px;">
+
+            <label>Title:</label>
+            <input type="text" name="updated title" value="{{ book.title }}" >
+            
+            <label>Author:</label>
+            <input type="text" name="updated author" value="{{ book.author }}" >
+            
+            <label>Image URL:</label>
+            <input type="text" name="updated image_url" value="{{ book.image_url }}">
+            
+            <br><br>
+            <input type="submit" value="Update">
+        </form>
+        <br>
+        <a href="/books">Cancel and Go Back</a>
+    </main>
+</body>
+</html>

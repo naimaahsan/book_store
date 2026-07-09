@@ -20,13 +20,16 @@
                     <div class= "book-thumbnail">
 
                         <img src = "{{ book.image_url if book.image_url else 'https://via.placeholder.com/300x200' }}" alt = "{{ book.title }}">
-                        
+
                         <div class="caption">
                             <h3> {{ book.title }} </h3>
                             <p> By {{ book.author }}</p>
                         </div>
                         <form class="delete" action="/books/delete/{{ book.id }}" method="POST">
                             <button type="submit" class="delete-btn">Delete</button>
+                        </form>
+                        <form class="update" action="/books/update/{{ book.id }}" method="UPDATE">
+                            <button type="submit" class="update">Update Book</button>
                         </form>
                     </div>
                     {% endfor %}
