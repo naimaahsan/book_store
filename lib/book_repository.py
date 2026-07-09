@@ -21,3 +21,10 @@ class BookRepository:
             'INSERT INTO books (title, author, image_url) VALUES (%s, %s, %s)', [book.title, book.author, book.image_url]
         )
         return None
+    
+    def delete(self, book_id):
+        self._connection.execute(
+            'DELETE FROM books WHERE id = %s', [book_id]
+        )
+
+        return None

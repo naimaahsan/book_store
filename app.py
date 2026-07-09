@@ -10,12 +10,17 @@ from lib.login_required import login_required
 
 # instantiate a Flask app object
 app = Flask(__name__)
-app.secret_key = "some_really_secret_key"
+app.secret_key = "some_really_secret_key" # adds encryption onto cache so cannot be hacked when making a session
 
+
+# --- HOME ---
 
 @app.route("/", methods=["GET"])
 def index():
     return render_template("books/index.html")
+
+
+# --- BOOKS ---
 
 @app.route("/books", methods=["GET"])
 def get_books():
@@ -24,7 +29,6 @@ def get_books():
     book_repository = BookRepository(connection)         # Pass the connection to the repository to allow SQL queries
     books = book_repository.all()                     # Run SELECT query and get list of Book objects
     return render_template("books/books.html", books=books) # Render books.html and inject the books data into the template
-
 
 @app.route('/books', methods=["POST"])
 @login_required
@@ -37,6 +41,17 @@ def create_book():
     book_repository.create(book)
     return redirect("/books")
 
+@app.route('/books/delete/<int:book_id>', methods=["POST"])
+@login_required
+def delete_book(book_id):
+    connection = DatabaseConnection()
+    connection.connect()
+    book_repository = BookRepository(connection)
+    book_repository.delete(book_id)
+    return redirect('/books')
+
+# --- FILMS ---
+
 @app.route('/films', methods=["GET"])
 def get_films():
     connection = DatabaseConnection()
@@ -44,6 +59,20 @@ def get_films():
     film_repostitory = FilmRepository(connection)
     films = film_repostitory.all()
     return render_template("films/films.html", films = films)
+
+@app.route('/films', methods=["POST"])
+@login_required
+def create_film():
+    connection = DatabaseConnection()
+    connection.connect()
+    film_repository = FilmRepository(connection)
+    film_details = request.form 
+    film = Film(title=film_details["title"], genre=film_details["genre"])
+    film_repository.create(film)
+    return redirect("/films")
+
+
+# --- USERS: CREATE ---
 
 @app.route('/users/new', methods=["GET"])
 def sign_up_form():
@@ -55,9 +84,11 @@ def create_user():
     connection.connect()
     user_repository = UserRepository(connection)
     user_details = request.form 
-    user = User(username=user_details["username"], password=user_details["password"])
+    user = User(username=user_details["username"], password=user_details["password"], id=None)
     user_repository.create(user)
     return redirect('/books')
+
+# --- USERS: LOGIN ---
 
 @app.route('/sessions/new', methods=["GET"])
 def login_form():

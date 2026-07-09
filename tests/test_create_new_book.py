@@ -19,7 +19,7 @@ def test_create_new_book(page: Page):
     page.get_by_placeholder("Title").fill("The BFG")
     page.get_by_placeholder("Author").fill("Roahl Dahl")
     page.get_by_role("button", name="Submit").click()
-    books = page.locator(".book-thumbnail")
+    books = page.locator(".caption")
     
     new_book = books.all_inner_texts()[-1]
     assert new_book == "The BFG\n\nBy Roahl Dahl"

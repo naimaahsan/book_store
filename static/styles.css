@@ -12,8 +12,6 @@ body {
 /* This styles the card container holding your books */
 main {
     background-color: #000000;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M30 14c-2.5-4-7-6-11-4-4 2-5 6.5-3 10.5 2.5 4 7 6 11 4 4-2 5-6.5 3-10.5zm0 32c2.5 4 7 6 11 4 4-2 5-6.5 3-10.5-2.5-4-7-6-11-4-4 2-5 6.5-3 10.5zM14 30c-4 2.5-6 7-4 11 2 4 6.5 5 10.5 3 4-2.5 6-7 4-11-2-4-6.5-5-10.5-3zm32 0c4-2.5 6-7 4-11-2-4-6.5-5-10.5-3-4 2.5-6 7-4 11 2 4 6.5 5 10.5 3z' fill='%23222222' fill-opacity='0.4'/%3E%3C/svg%3E");
-    background-repeat: repeat;
     max-width: 1000px;                                 /* Keeps the box from getting too wide */
     margin: 5 auto;                                    /* Magic rule: centers the box on the screen */
     padding: 30px;                                     /* Breathing space inside the box */
@@ -87,6 +85,11 @@ nav a:hover {
 
 /* Individual book thumbnail cards */
 .book-thumbnail {
+    display: flex;
+    flex-direction: column;  /* Stack elements vertically (Image, Text, Form) */
+    justify-content: space-between; /* This forces the top and bottom items apart! */
+    height: 100%;
+    
     background-color: #1a151a;                         /* Dark background that compliments the body color */
     border: 1px solid #4a3b4a;                         /* Subtle border matching the theme */
     border-radius: 8px;
@@ -185,21 +188,41 @@ nav a:hover {
 
 /* Make button darker when hovered over */
 .book-form input[type="submit"]:hover {
-    background-color: #530d4c;
+    background-color: #776775;
     color: rgb(247, 245, 245);
 }
 
 .book-form p {
     margin-bottom: 0;
     font-style: italic;
-}
-
-.book-form p {
     color: #2c0628;
     font-size: small;
 }
 
 
+/* ==========================================================================
+   DELETE BUTTON
+   ========================================================================== */
+.delete button {
+    width: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: .75rem;
+    background-color: #4a3b4a;
+    color: rgb(241, 235, 235);
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.delete button:hover {
+    background-color: #776775;
+    color: rgb(247, 245, 245);
+}
 /* ==========================================================================
    FILMS DISPLAY SECTIONS
    ========================================================================== */
@@ -300,12 +323,11 @@ nav a:hover {
 .signup-form p {
     margin-bottom: 0;
     font-style: italic;
-}
-
-.signup-form p {
     color: #2c0628;
     font-size: small;
 }
+
+
 
 
 /* ==========================================================================
@@ -386,11 +408,78 @@ nav a:hover {
 }
 
 .login-form p {
+    color: #2c0628;
+    font-size: small;
     margin-bottom: 0;
     font-style: italic;
 }
 
-.login-form p {
+
+/* ==========================================================================
+   FILM FORM 
+   ========================================================================== */
+
+/* Container styling for the form */
+.film-form {
+    max-width: 200px;
+    margin: 2rem 0;
+    padding: 1.4rem;
+    background-color: #f1e0f1;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+}
+
+.film-form h3 {
+    color: #2b0a2b;
+    text-align: left;
+    font-size: 24px;
+    margin-top: 0;                                     /* Ensures clean spacing at the top */
+}
+
+/* Beautiful modern input styling */
+.film-form input[type="text"] {
+    display:block;                                    /* Pushes the next input onto a new line */
+    width: 100%;
+    padding: .5rem;
+    margin-bottom: 1.25rem;                            /* Replaces the old .input-group spacing */
+    border: 1px solid #060505;
+    border-radius: 4px;
+    font-size: 1rem;
+    box-sizing: border-box;                            /* Prevents input from stretching outside the form */
+    transition: border-color 0.5s, box-shadow 0.2s;
+}
+
+/* Highlight input when clicked/focused */
+.film-form input[type="text"]:focus {
+    outline: none;
+    border-color: #0037ff;
+    box-shadow: 0 0 0 3px rgba(15, 69, 215, 0.2);
+}
+
+/* Styling the Submit Button (Updated to target input[type="submit"]) */
+.film-form input[type="submit"] {
+    width: 100%;
+    padding: .75rem;
+    background-color: #4a3b4a;
+    color: rgb(241, 235, 235);
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+/* Make button darker when hovered over */
+.film-form input[type="submit"]:hover {
+    background-color: #530d4c;
+    color: rgb(247, 245, 245);
+}
+
+.film-form p {
     color: #2c0628;
     font-size: small;
+    margin-bottom: 0;
+    font-style: italic;
 }
