@@ -71,6 +71,7 @@ def show_update_page(book_id):
     book_repository = BookRepository(connection)
     book = book_repository.find(book_id)
     return render_template('books/update.html', book=book)
+
 # --- FILMS ---
 
 @app.route('/films', methods=["GET"])
@@ -88,9 +89,41 @@ def create_film():
     connection.connect()
     film_repository = FilmRepository(connection)
     film_details = request.form 
-    film = Film(title=film_details["title"], genre=film_details["genre"])
+    film = Film(title=film_details["title"], genre=film_details["genre"], image_url=film_details["image_url"])
     film_repository.create(film)
     return redirect("/films")
+
+@app.route('/films/delete/<int:film_id>', methods=["POST"])
+@login_required
+def delete_film(film_id):
+    connection = DatabaseConnection()
+    connection.connect()
+    film_repository = FilmRepository(connection)
+    film_repository.delete(film_id)
+    return redirect('/films')
+
+@app.route('/films/update/<int:film_id>', methods=["POST"])
+@login_required
+def save_updated_film(film_id):
+    connection = DatabaseConnection()
+    connection.connect()
+    film_repository = FilmRepository(connection)
+    upd_title = request.form['new title']
+    upd_genre = request.form['new genre']
+    upd_image_url = request.form['new image_url'] 
+    updated_film = Film(title=upd_title, genre=upd_genre, image_url=upd_image_url, id=film_id)
+    film_repository.update(updated_film)
+    return redirect('/films')
+
+@app.route('/films/update/<int:film_id>', methods=["GET"])
+@login_required
+def show_update_films_page(film_id):
+    connection = DatabaseConnection()
+    connection.connect()
+    film_repository = FilmRepository(connection)
+    film = film_repository.find(film_id)
+    return render_template('films/update_film.html', film=film)
+
 
 
 # --- USERS: CREATE ---

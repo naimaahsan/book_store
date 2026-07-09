@@ -1,0 +1,77 @@
+<!-- <html>
+<head>
+    <nav>
+            <a href="/" >Home</a>
+            <a href="/books" >Books</a>
+            <a href="/films" >Films</a>
+            <a href="/users/new" >Create Account</a>
+            <a href="/sessions/new">Login</a>
+        </nav>
+
+    <title>Update {{ film.title }}</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <main>
+        <form class="update_film-form" method="POST" action="/films/update/{{ film.id }}">
+            <h1>Update: <br>{{ film.title }}</br></h1>
+
+            <label>ID:</label>
+            <input type="text" name="ID" value="{{ film.id }}" readonly style="background-color: #e9ecef; color: #6c757d; cursor: not-allowed; width: 50px;">
+
+            <label>Title:</label>
+            <input type="text" name="new title" value="{{ film.title }}" >
+            
+            <label>Genre:</label>
+            <input type="text" name="new genre" value="{{ film.genre }}" >
+            
+            <label>Image URL:</label>
+            <input type="text" name="new image_url" value="{{ film.image_url }}">
+            
+            <br><br>
+            <input type="submit" value="Update">
+        </form>
+        <br>
+        <a href="/films">Cancel and Go Back</a>
+    </main>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/books">Books</a>
+        <a href="/films">Films</a>
+        <a href="/users/new">Create Account</a>
+        <a href="/sessions/new">Login</a>
+    </nav>
+    <title>Update {{ film.title }}</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <main>
+        <form class="update_film-form" method="POST" action="/films/update/{{ film.id }}">
+            <h1>Update: <br>{{ film.title }}</h1>
+
+            <label>ID:</label>
+            <input type="text" name="ID" value="{{ film.id }}" readonly style="background-color: #e9ecef; color: #6c757d; cursor: not-allowed; width: 50px;">
+
+            <label>Title:</label>
+            <input type="text" name="new title" value="{{ film.title }}">
+            
+            <label>Genre:</label>
+            <input type="text" name="new genre" value="{{ film.genre }}">
+            
+            <label>Image URL:</label>
+            <input type="text" name="new image_url" value="{{ film.image_url }}">
+            
+            <br><br>
+            <input type="submit" value="Update">
+        </form>
+        <br>
+        <a href="/films">Cancel and Go Back</a>
+    </main>
+</body>
+</html>

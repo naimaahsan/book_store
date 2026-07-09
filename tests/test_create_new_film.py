@@ -14,13 +14,12 @@ def test_create_new_film(page: Page):
     page.get_by_role("button", name="Login").click()
 
     page.goto("http://localhost:5001/films")
-    page.get_by_placeholder("Title *").fill("Film")
-    page.get_by_placeholder("Genre *").fill("Genre")
+    page.get_by_placeholder("Title *").fill("New Film")
+    page.get_by_placeholder("Genre *").fill("Action")
     page.get_by_role("button", name="Submit").click()
     films = page.locator(".films")
-    
     new_film = films.all_inner_texts()[-1]
-    assert new_film == "Film\n\nGenre: Genre"
+    assert new_film == "New Film\n\nGenre: Action"
 
 
 def test_create_new_film_unauth(page: Page):
